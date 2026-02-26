@@ -595,19 +595,7 @@
        If not injected, we fall back to the sample you provided (account) and an empty project list.
     */
 
-    const fallbackAccount = {
-      "accountid": "72279605-96d3-ef11-8ee9-000d3a35e6af",
-      "name": "Anthony's Account",
-      "pa911_nda@OData.Community.Display.V1.FormattedValue": "None",
-      "pa911_totalhoursbilled@OData.Community.Display.V1.FormattedValue": "3.50",
-      "pa911_referraltype@OData.Community.Display.V1.FormattedValue": "Discounted Rate",
-      "pa911_referralcontractdate@OData.Community.Display.V1.FormattedValue": "2/3/2025",
-      "pa911_referralexpirationdate@OData.Community.Display.V1.FormattedValue": "2/3/2026",
-      "modifiedon@OData.Community.Display.V1.FormattedValue": "11/3/2025 3:37 PM",
-      "_ownerid_value@OData.Community.Display.V1.FormattedValue": "Anthony Apodaca"
-    };
-
-    const ACCOUNT = window.__ACCOUNT__ || fallbackAccount;
+    const ACCOUNT = window.__ACCOUNT__;
 
     // Accept either the raw array (body.value) or { body: { value: [...] } } or { value: [...] }
     const rawProjects = @{body('Get_Account_Projects')};
