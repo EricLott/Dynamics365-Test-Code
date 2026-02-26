@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Invalid Account | PowerApps911</title>
+  <title>Project Feedback | PowerApps911</title>
   <style>
     :root{
       --bg:#f6f6fb;
@@ -133,29 +133,71 @@
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       padding:18px;
-      text-align: center;
+    }
+    .card + .card{ margin-top:14px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 820px){
+      .grid{ grid-template-columns:1fr; }
+      .hero-title h1{ font-size:28px; }
     }
 
-    .btn{
-      appearance:none;
-      border:1px solid var(--border);
-      background:#fff;
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:600;
-      font-size:13px;
-      transition:transform .05s, background .15s, border-color .15s, box-shadow .15s;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 10px;
     }
-    .btn:active{ transform:translateY(1px); }
-    .btn-primary{
+    .section-title h2{
+      margin:0;
+      font-size:16px;
+      color:var(--pa-purple-2);
+      letter-spacing:.2px;
+    }
+    .hint{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    label{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin:0 0 6px;
+    }
+    .req::after{
+      content:" *";
+      color:var(--danger);
+      font-weight:700;
+    }
+
+    input[type="text"], input[type="email"], input[type="url"], select, textarea{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:11px 12px;
+      font-size:14px;
+      outline:none;
+      background:#fff;
+      transition:box-shadow .15s, border-color .15s;
+    }
+    textarea{ min-height:110px; resize:vertical; }
+    input:focus, select:focus, textarea:focus{
       border-color:rgba(106, 27, 120, .45);
-      background:linear-gradient(180deg, var(--pa-purple), var(--pa-purple-2));
-      color:#fff;
+      box-shadow:0 0 0 4px var(--focus);
+    }
+
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
     }
 
     .pill{
@@ -171,6 +213,218 @@
       white-space:nowrap;
     }
 
+    .account-header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .account-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .kv{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:#fafafe;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .kv b{ color:var(--text); font-weight:600; }
+
+    .btn{
+      appearance:none;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:13px;
+      transition:transform .05s, background .15s, border-color .15s, box-shadow .15s;
+    }
+    .btn:active{ transform:translateY(1px); }
+    .btn-primary{
+      border-color:rgba(106, 27, 120, .45);
+      background:linear-gradient(180deg, var(--pa-purple), var(--pa-purple-2));
+      color:#fff;
+    }
+    .btn-outline{
+      border-color:rgba(106, 27, 120, .45);
+      color:var(--pa-purple-2);
+      background:#fff;
+    }
+    .btn-danger{
+      border-color:rgba(198,40,40,.35);
+      color:var(--danger);
+      background:#fff;
+    }
+    .btn-small{
+      padding:8px 10px;
+      font-size:12px;
+      border-radius:10px;
+    }
+
+    /* Attachment area */
+    .dropzone{
+      border:1px dashed #cfcbe3;
+      border-radius:var(--radius);
+      padding:14px;
+      background:#fbfbff;
+    }
+    .dropzone.is-dragover{
+      border-color:rgba(106, 27, 120, .55);
+      box-shadow:0 0 0 4px var(--focus);
+      background:#ffffff;
+    }
+    .dz-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .dz-title{
+      margin:0;
+      font-weight:700;
+      font-size:13px;
+      color:var(--pa-purple-2);
+    }
+    .dz-sub{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .thumbs{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width: 820px){
+      .thumbs{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .thumb{
+      position:relative;
+      border:1px solid var(--border);
+      border-radius:12px;
+      overflow:hidden;
+      background:#fff;
+      min-height:84px;
+    }
+    .thumb img{
+      width:100%;
+      height:110px;
+      object-fit:cover;
+      display:block;
+    }
+    .thumb .meta{
+      padding:8px 10px;
+      font-size:12px;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+    }
+    .thumb .meta .name{
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      max-width:80%;
+    }
+    .thumb .remove{
+      position:absolute;
+      top:8px;
+      right:8px;
+      border:1px solid rgba(0,0,0,.12);
+      background:rgba(255,255,255,.92);
+      border-radius:10px;
+      padding:6px 8px;
+      font-size:12px;
+      cursor:pointer;
+    }
+
+    /* Line items */
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:#fff;
+    }
+    .table th, .table td{
+      padding:10px 10px;
+      border-bottom:1px solid var(--border);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .table th{
+      background:#fbfbff;
+      color:var(--muted);
+      font-weight:700;
+      font-size:12px;
+    }
+    .table tr:last-child td{ border-bottom:none; }
+    .table td .cell{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .footer-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .toast{
+      display:none;
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:#fbfbff;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .toast.show{ display:block; }
+    .toast.success{
+      border-color:rgba(46,125,50,.25);
+      background:rgba(46,125,50,.06);
+      color:#1f5b26;
+    }
+    .toast.error{
+      border-color:rgba(198,40,40,.25);
+      background:rgba(198,40,40,.06);
+      color:#7b1b1b;
+    }
+
+    .small-note{
+      font-size:12px;
+      color:var(--muted);
+      margin:8px 0 0;
+    }
+
+    .divider{
+      height:1px;
+      background:var(--border);
+      margin:14px 0;
+    }
   </style>
 </head>
 <body>
@@ -198,24 +452,613 @@
   <header class="brand-hero">
     <div class="hero-title">
       <div style="margin-bottom:14px">
-        <span class="pill" id="envPill">Account Error</span>
+        <span class="pill" id="envPill">Account Feedback Intake</span>
       </div>
-      <h1>Invalid Account</h1>
-      <p>The account information could not be retrieved.</p>
+      <h1>Project Feedback</h1>
+      <p>Submit project feedback, bug reports, or enhancement requests. Include enough detail for our team to reproduce and triage quickly.</p>
     </div>
   </header>
 
   <main class="wrap">
+    <!-- Account header -->
     <section class="card">
-      <div style="padding: 40px 20px;">
-        <h2 style="color: var(--pa-purple-2); margin-top: 0;">Account Not Found</h2>
-        <p style="color: var(--muted); font-size: 16px; margin: 20px 0;">
-          The account ID provided is invalid or could not be found. Please check the link and try again, or contact support if the issue persists.
-        </p>
-        <a href="#" class="btn btn-primary">Go to Home</a>
+      <div class="account-header">
+        <div>
+          <div class="section-title">
+            <h2>Account</h2>
+          </div>
+          <div style="font-size:18px;font-weight:800;color:var(--pa-purple-2)" id="acctName">Loading account...</div>
+          <div class="account-meta" id="acctMeta"></div>
+        </div>
+
+        <div class="row" style="align-items:flex-end">
+          <button class="btn btn-outline" type="button" id="resetBtn">Reset Form</button>
+          <button class="btn btn-primary" type="button" id="submitBtn">Submit Feedback</button>
+        </div>
+      </div>
+     
+    </section>
+
+    <!-- Core details -->
+    <section class="card">
+      <div class="section-title">
+        <h2>Feedback Details</h2>
+        <p class="hint">Fields marked with * are required.</p>
+      </div>
+
+      <div class="grid">
+        <div>
+          <label class="req" for="projectSelect">Project</label>
+          <select id="projectSelect" required>
+            <option value="" selected disabled>Select a project</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="email">Your Email (optional)</label>
+          <input id="email" type="email" placeholder="name@company.com" />
+        </div>
+
+        <div>
+          <label for="priority">Priority</label>
+          <select id="priority">
+            <option value="Normal" selected>Normal</option>
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="taskSelect">Related Task / Feature (optional)</label>
+          <select id="taskSelect">
+            <option value="" selected>(Optional) Select a task</option>
+            <option value="(not loaded)">Tasks can be populated after project selection</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div>
+        <label class="req" for="summary">Summary</label>
+        <input id="summary" type="text" placeholder="One sentence describing the issue or request" required />
+      </div>
+
+      <div style="margin-top:10px">
+        <label for="details">Details</label>
+        <textarea id="details" placeholder="Steps to reproduce, expected vs actual behavior, links, additional context, etc."></textarea>
       </div>
     </section>
+
+    <!-- Attachments -->
+    <section class="card">
+      <div class="section-title">
+        <h2>Attachments</h2>
+        <p class="hint">Upload files, or drag and drop. Screenshots can be attached as images too.</p>
+      </div>
+
+      <div class="dropzone" id="dropzone" tabindex="0" aria-label="Attachment dropzone">
+        <div class="dz-top">
+          <div>
+            <p class="dz-title">Add attachments</p>
+            <p class="dz-sub">Drag files here or use the button. (Pasting screenshots is supported if your browser provides clipboard image data.)</p>
+          </div>
+          <div class="row">
+            <input id="fileInput" type="file" multiple style="display:none" />
+            <button class="btn btn-outline btn-small" type="button" id="chooseFilesBtn">Choose files</button>
+            <button class="btn btn-danger btn-small" type="button" id="clearFilesBtn">Clear all</button>
+          </div>
+        </div>
+
+        <div class="thumbs" id="thumbs"></div>
+        <p class="small-note" id="attachmentNote">No attachments yet.</p>
+      </div>
+    </section>
+
+    <!-- Feedback line items -->
+    <section class="card">
+      <div class="section-title">
+        <h2>Feedback Line Items</h2>
+        <p class="hint">Add one or more items if you have multiple requests.</p>
+      </div>
+
+      <table class="table" aria-label="Feedback line items">
+        <thead>
+          <tr>
+            <th style="width:22%">Category</th>
+            <th style="width:28%">Title</th>
+            <th>Notes</th>
+            <th style="width:90px">Remove</th>
+          </tr>
+        </thead>
+        <tbody id="lineItemsBody"></tbody>
+      </table>
+
+      <div class="footer-row">
+        <button class="btn btn-outline" type="button" id="addLineItemBtn">Add line item</button>
+        <p class="hint">Tip: Use one line item per distinct change request for easier tracking.</p>
+      </div>
+    </section>
+
+    <div class="toast" id="toast"></div>
   </main>
 
+  <script>
+    /* ============================
+       Injected data (Power Automate)
+       ============================
+
+       Recommended: In Power Automate or Power Pages, set these before rendering:
+         window.__ACCOUNT__ = @{body('Get_Account')};
+         window.__PROJECTS__ = @{body('Get_Account_Projects')};
+
+       If not injected, we fall back to the sample you provided (account) and an empty project list.
+    */
+
+    const ACCOUNT = window.__ACCOUNT__;
+
+    // Accept either the raw array (body.value) or { body: { value: [...] } } or { value: [...] }
+    const rawProjects = @{body('Get_Account_Projects')};
+    const PROJECTS = Array.isArray(rawProjects)
+      ? rawProjects
+      : (rawProjects && rawProjects.body && Array.isArray(rawProjects.body.value) ? rawProjects.body.value
+        : (rawProjects && Array.isArray(rawProjects.value) ? rawProjects.value : []));
+
+    /* ============================
+       Elements
+       ============================ */
+    const projectSelect = document.getElementById("projectSelect");
+    const taskSelect = document.getElementById("taskSelect");
+    const acctName = document.getElementById("acctName");
+    const acctMeta = document.getElementById("acctMeta");
+    const resetBtn = document.getElementById("resetBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const toast = document.getElementById("toast");
+
+    const dropzone = document.getElementById("dropzone");
+    const chooseFilesBtn = document.getElementById("chooseFilesBtn");
+    const clearFilesBtn = document.getElementById("clearFilesBtn");
+    const fileInput = document.getElementById("fileInput");
+    const thumbs = document.getElementById("thumbs");
+    const attachmentNote = document.getElementById("attachmentNote");
+
+    const addLineItemBtn = document.getElementById("addLineItemBtn");
+    const lineItemsBody = document.getElementById("lineItemsBody");
+
+    /* ============================
+       Utilities
+       ============================ */
+    function safeText(v){
+      if (v === null || v === undefined) return "";
+      return String(v);
+    }
+
+    function showToast(message, type){
+      toast.className = "toast show" + (type ? " " + type : "");
+      toast.textContent = message;
+      window.clearTimeout(showToast._t);
+      showToast._t = window.setTimeout(() => {
+        toast.className = "toast";
+        toast.textContent = "";
+      }, 3400);
+    }
+
+    function fmtMoneyishHours(val){
+      const n = Number(val);
+      if (!Number.isFinite(n)) return safeText(val);
+      return n.toFixed(2);
+    }
+
+    /* ============================
+       Account header render
+       ============================ */
+    function renderAccount(){
+  acctName.textContent = safeText(ACCOUNT.name || "Account");
+
+  const meta = [
+    { 
+      k: "Account ID", 
+      v: ACCOUNT.accountid || ACCOUNT["accountid"] || "" 
+    }
+  ];
+
+  acctMeta.innerHTML = meta
+    .filter(x => x.v)
+    .map(x => `<div class="kv"><span>${x.k}:</span><b>${escapeHtml(x.v)}</b></div>`)
+    .join("");
+}
+
+    function escapeHtml(str){
+      return safeText(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    /* ============================
+       Projects dropdown
+       ============================ */
+    function getProjectLabel(p){
+      // Your list rows likely includes at least:
+      //  - pa911_projectid (GUID)
+      //  - pa911_name (project name)
+      // Keep it resilient: if different, still try common fields.
+      const name =
+        p.pa911_name ||
+        p.name ||
+        p["pa911_name@OData.Community.Display.V1.FormattedValue"] ||
+        p["name@OData.Community.Display.V1.FormattedValue"] ||
+        "(Unnamed Project)";
+
+      const status =
+        p["statuscode@OData.Community.Display.V1.FormattedValue"] ||
+        p["pa911_projectstatus@OData.Community.Display.V1.FormattedValue"] ||
+        "";
+
+      return status ? `${name} (${status})` : name;
+    }
+
+    function getProjectId(p){
+      return (
+        p.pa911_projectid ||
+        p.projectid ||
+        p["pa911_projectid"] ||
+        p["projectid"] ||
+        ""
+      );
+    }
+
+    function populateProjects(){
+      // Clear all but the placeholder
+      projectSelect.innerHTML = `<option value="" selected disabled>Select a project</option>`;
+
+      if (!PROJECTS.length){
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = "No projects returned from Get Account Projects";
+        opt.disabled = true;
+        projectSelect.appendChild(opt);
+        return;
+      }
+
+      // Sort by label for nicer UX
+      const sorted = [...PROJECTS].sort((a,b) => getProjectLabel(a).localeCompare(getProjectLabel(b)));
+
+      for (const p of sorted){
+        const id = getProjectId(p);
+        if (!id) continue;
+        const opt = document.createElement("option");
+        opt.value = id;
+        opt.textContent = getProjectLabel(p);
+        opt.dataset.json = JSON.stringify(p);
+        projectSelect.appendChild(opt);
+      }
+    }
+
+    // Placeholder: tasks/features will usually be loaded after project selection
+    // (either another Dataverse list rows, or pre-injected per project)
+    function resetTasks(){
+      taskSelect.innerHTML = `<option value="" selected>(Optional) Select a task</option>`;
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = "Tasks not loaded";
+      opt.disabled = true;
+      taskSelect.appendChild(opt);
+    }
+
+    projectSelect.addEventListener("change", () => {
+      resetTasks();
+
+      // Optional: if your project object includes a field with a URL, you can reflect it into the UI later.
+      const selected = projectSelect.options[projectSelect.selectedIndex];
+      try{
+        const p = JSON.parse(selected.dataset.json || "{}");
+        const docsUrl = p.pa911_projectdocumentsurl || "";
+        if (docsUrl){
+          showToast("Project selected. Project documents URL is available in the record.", "");
+        }
+      }catch{ }
+    });
+
+    /* ============================
+       Attachments (file + paste + remove)
+       ============================ */
+    const attachments = []; // { id, file, kind, previewUrl, name, size }
+
+    function bytes(n){
+      const num = Number(n);
+      if (!Number.isFinite(num)) return "";
+      const units = ["B","KB","MB","GB"];
+      let i = 0;
+      let v = num;
+      while (v >= 1024 && i < units.length - 1){
+        v = v / 1024;
+        i++;
+      }
+      return `${v.toFixed(i === 0 ? 0 : 1)} ${units[i]}`;
+    }
+
+    function addFiles(fileList){
+      const files = Array.from(fileList || []);
+      if (!files.length) return;
+
+      for (const file of files){
+        const id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random());
+
+        const isImage = /^image\//i.test(file.type);
+        const previewUrl = isImage ? URL.createObjectURL(file) : "";
+
+        attachments.push({
+          id,
+          file,
+          kind: isImage ? "image" : "file",
+          previewUrl,
+          name: file.name || "clipboard-image.png",
+          size: file.size || 0
+        });
+      }
+      renderAttachments();
+    }
+
+    function removeAttachment(id){
+      const idx = attachments.findIndex(a => a.id === id);
+      if (idx === -1) return;
+      const a = attachments[idx];
+      if (a.previewUrl) URL.revokeObjectURL(a.previewUrl);
+      attachments.splice(idx, 1);
+      renderAttachments();
+    }
+
+    function clearAttachments(){
+      for (const a of attachments){
+        if (a.previewUrl) URL.revokeObjectURL(a.previewUrl);
+      }
+      attachments.length = 0;
+      renderAttachments();
+    }
+
+    function renderAttachments(){
+      thumbs.innerHTML = "";
+
+      if (!attachments.length){
+        attachmentNote.textContent = "No attachments yet.";
+        return;
+      }
+
+      attachmentNote.textContent = `${attachments.length} attachment(s) added.`;
+
+      for (const a of attachments){
+        const div = document.createElement("div");
+        div.className = "thumb";
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "remove";
+        remove.textContent = "Remove";
+        remove.addEventListener("click", () => removeAttachment(a.id));
+        div.appendChild(remove);
+
+        if (a.previewUrl){
+          const img = document.createElement("img");
+          img.src = a.previewUrl;
+          img.alt = a.name;
+          div.appendChild(img);
+        }else{
+          const ph = document.createElement("div");
+          ph.style.cssText = "height:110px;display:flex;align-items:center;justify-content:center;color:var(--muted);background:#fbfbff;font-weight:700;";
+          ph.textContent = "FILE";
+          div.appendChild(ph);
+        }
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.innerHTML = `<span class="name" title="${escapeHtml(a.name)}">${escapeHtml(a.name)}</span><span>${escapeHtml(bytes(a.size))}</span>`;
+        div.appendChild(meta);
+
+        thumbs.appendChild(div);
+      }
+    }
+
+    chooseFilesBtn.addEventListener("click", () => fileInput.click());
+    clearFilesBtn.addEventListener("click", clearAttachments);
+    fileInput.addEventListener("change", (e) => {
+      addFiles(e.target.files);
+      fileInput.value = "";
+    });
+
+    // Drag + drop
+    ["dragenter","dragover"].forEach(evt => {
+      dropzone.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add("is-dragover");
+      });
+    });
+
+    ["dragleave","drop"].forEach(evt => {
+      dropzone.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove("is-dragover");
+      });
+    });
+
+    dropzone.addEventListener("drop", (e) => {
+      const dt = e.dataTransfer;
+      if (dt && dt.files && dt.files.length){
+        addFiles(dt.files);
+      }
+    });
+
+    // Clipboard paste (low-key support, not over-emphasized)
+    // Note: Browser support varies. This will work in most Chromium-based browsers for image clipboard data.
+    document.addEventListener("paste", async (e) => {
+      if (!e.clipboardData) return;
+
+      const items = Array.from(e.clipboardData.items || []);
+      const imageItems = items.filter(i => i.type && i.type.startsWith("image/"));
+      if (!imageItems.length) return;
+
+      for (const it of imageItems){
+        const file = it.getAsFile();
+        if (file) addFiles([file]);
+      }
+      showToast("Screenshot added to attachments.", "success");
+    });
+
+    /* ============================
+       Line items
+       ============================ */
+    function makeLineItemRow(){
+      const tr = document.createElement("tr");
+
+      const tdCat = document.createElement("td");
+      tdCat.innerHTML = `
+        <div class="cell">
+          <select class="li-category">
+            <option value="Bug" selected>Bug</option>
+            <option value="Enhancement">Enhancement</option>
+            <option value="Question">Question</option>
+            <option value="Data Issue">Data Issue</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      `;
+
+      const tdTitle = document.createElement("td");
+      tdTitle.innerHTML = `
+        <div class="cell">
+          <input class="li-title" type="text" placeholder="Short title" />
+          <input class="li-url" type="url" placeholder="Related link (optional)" />
+        </div>
+      `;
+
+      const tdNotes = document.createElement("td");
+      tdNotes.innerHTML = `
+        <div class="cell">
+          <textarea class="li-notes" placeholder="Details for this line item"></textarea>
+        </div>
+      `;
+
+      const tdRemove = document.createElement("td");
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn btn-danger btn-small";
+      btn.textContent = "Remove";
+      btn.addEventListener("click", () => tr.remove());
+      tdRemove.appendChild(btn);
+
+      tr.appendChild(tdCat);
+      tr.appendChild(tdTitle);
+      tr.appendChild(tdNotes);
+      tr.appendChild(tdRemove);
+
+      return tr;
+    }
+
+    function addLineItem(){
+      lineItemsBody.appendChild(makeLineItemRow());
+    }
+
+    addLineItemBtn.addEventListener("click", addLineItem);
+
+    /* ============================
+       Submit (demo payload)
+       ============================ */
+    function buildPayload(){
+      const projectId = projectSelect.value;
+      const email = document.getElementById("email").value.trim();
+      const priority = document.getElementById("priority").value;
+      const taskId = taskSelect.value;
+      const summary = document.getElementById("summary").value.trim();
+      const details = document.getElementById("details").value.trim();
+
+      const lineItems = Array.from(lineItemsBody.querySelectorAll("tr")).map(tr => {
+        return {
+          category: tr.querySelector(".li-category")?.value || "",
+          title: tr.querySelector(".li-title")?.value?.trim() || "",
+          url: tr.querySelector(".li-url")?.value?.trim() || "",
+          notes: tr.querySelector(".li-notes")?.value?.trim() || ""
+        };
+      }).filter(li => li.category || li.title || li.url || li.notes);
+
+      return {
+        account: {
+          id: ACCOUNT.accountid || "",
+          name: ACCOUNT.name || ""
+        },
+        project: {
+          id: projectId
+        },
+        submittedByEmail: email || null,
+        priority,
+        relatedTaskId: taskId || null,
+        summary,
+        details,
+        lineItems,
+        attachments: attachments.map(a => ({
+          name: a.name,
+          size: a.size,
+          type: a.file?.type || "",
+          kind: a.kind
+          // In production: upload these files (a.file) to Dataverse Notes, SharePoint, Blob, etc.
+        }))
+      };
+    }
+
+    function validate(){
+      const projectId = projectSelect.value;
+      const summary = document.getElementById("summary").value.trim();
+      if (!projectId) return "Please select a project.";
+      if (!summary) return "Please enter a summary.";
+      return "";
+    }
+
+    submitBtn.addEventListener("click", async () => {
+      const err = validate();
+      if (err){
+        showToast(err, "error");
+        return;
+      }
+
+      const payload = buildPayload();
+
+      // Replace this with your Power Automate trigger call:
+      //  - POST to a webhook
+      //  - or submit to Power Pages
+      //  - or call a custom API
+      console.log("Submit payload:", payload);
+
+      showToast("Feedback prepared. Wire this payload to your Power Automate flow.", "success");
+    });
+
+    resetBtn.addEventListener("click", () => {
+      document.getElementById("email").value = "";
+      document.getElementById("priority").value = "Normal";
+      document.getElementById("summary").value = "";
+      document.getElementById("details").value = "";
+
+      projectSelect.selectedIndex = 0;
+      resetTasks();
+      clearAttachments();
+
+      lineItemsBody.innerHTML = "";
+      addLineItem();
+      showToast("Form reset.", "");
+    });
+
+    /* ============================
+       Init
+       ============================ */
+    (function init(){
+      renderAccount();
+      populateProjects();
+      resetTasks();
+      addLineItem();
+      renderAttachments();
+    })();
+  </script>
 </body>
 </html>
